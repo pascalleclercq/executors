@@ -6,31 +6,39 @@ import org.junit.Test;
 public class LogTest
 {
 
-    int minThreads = 50;
-    int maxThreads = 50;
-    int minTxPerThread = 50;
-    int maxTxPerThread = 50;
+    
+    int nbThreads = 30;
+    int minTxPerThread = 1;
+    int maxTxPerThread = 100;
     @Test
-    public void testOnLongTaskImpl() throws Exception {
-        System.err.println("LongTaskImpl");
-        LongTask longTask = new LongTaskImpl();
+    public void simpleLongTask() throws Exception {
+        System.err.println("SimpleLongTask");
+        LongTask longTask = new SimpleLongTask();
         perform(longTask);
     }
 
     @Test
-    public void testOnSingleThreadExecutorLongTaskImpl() throws Exception {
-        System.err.println("SingleThreadExecutorLongTaskImpl");
-        LongTask longTask = new SingleThreadExecutorLongTaskImpl();
+    public void singleThreadExecutorLongTaskWithException() throws Exception {
+        System.err.println("SingleThreadExecutorLongTaskWithException");
+        LongTask longTask = new SingleThreadExecutorLongTaskWithException();
         perform(longTask);
     }
 
+    @Test
+    public void singleThreadExecutorLongTaskIgnoreException() throws Exception {
+        System.err.println("SingleThreadExecutorLongTaskIgnoreException");
+        LongTask longTask = new SingleThreadExecutorLongTaskIgnoreException();
+        perform(longTask);
+    }
+    
     private void perform(LongTask longTask) throws Exception {
-        for (int i = minThreads; i <= maxThreads; i *= 10) {
+        
+        	
             for (int j = minTxPerThread; j <= maxTxPerThread; j *= 10) {
-                long ms = testThroughput(longTask, i, j);
-                System.err.println("TPS (" + i + " threads, " + j + " tx) = " + ((i * j) / (ms / 1000.0)));
+                long ms = testThroughput(longTask, nbThreads, j);
+                System.err.println("TPS (" + nbThreads + " threads, " + j + " tx) = " + ((nbThreads * j) / (ms / 1000.0)));
             }
-        }
+        
 
         System.err.println();
         System.err.flush();
