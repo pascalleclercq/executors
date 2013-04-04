@@ -1,4 +1,4 @@
-package org.apache.aries.transaction;
+package fr.opensagres.executordemo;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;

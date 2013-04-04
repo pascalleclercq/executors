@@ -1,4 +1,4 @@
-package org.apache.aries.transaction;
+package fr.opensagres.executordemo;
 
 public class SimpleLongTask implements LongTask {
 

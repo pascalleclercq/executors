@@ -1,7 +1,12 @@
 
-package org.apache.aries.transaction;
+package fr.opensagres.executordemo;
 
 import org.junit.Test;
+
+import fr.opensagres.executordemo.LongTask;
+import fr.opensagres.executordemo.SimpleLongTask;
+import fr.opensagres.executordemo.SingleThreadExecutorLongTaskIgnoreException;
+import fr.opensagres.executordemo.SingleThreadExecutorLongTaskWithException;
 
 public class LogTest
 {
