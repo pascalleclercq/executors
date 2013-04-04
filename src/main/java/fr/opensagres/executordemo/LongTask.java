@@ -1,5 +1,5 @@
 
-package org.apache.aries.transaction;
+package fr.opensagres.executordemo;
 
 public interface LongTask
 {
